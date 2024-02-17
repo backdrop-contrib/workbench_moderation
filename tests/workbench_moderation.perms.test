@@ -15,19 +15,16 @@ class WorkbenchModerationPermsTestCase extends BackdropWebTestCase {
     parent::setUp($modules);
 
     // Create a new content type and enable moderation on it.
-
     $type = $this->backdropCreateContentType();
     $this->content_type = $type->name;
     // TODO This variable was probably removed in Backdrop without replacement.
     variable_set('node_options_' . $this->content_type, array('revision', 'moderation'));
     // The editor should be able to view all unpublished content, even without authoring perms.
-
     $editor_permissions = array(
       0 => 'view all unpublished content',
     );
     $this->editor_user = $this->backdropCreateUser($editor_permissions);
     // The Author will create the content.
-
     $author_permissions = array(
       0 => 'create ' . $type->name . ' content',
     );
@@ -55,7 +52,6 @@ class WorkbenchModerationViewUnpublishedTestCase extends WorkbenchModerationPerm
     $this->assertTrue($is_moderated, t('The content type is moderated.'));
 
     // Create a new node and make sure it is unpublished.
-
     $body_name = 'body[' . LANGUAGE_NONE . '][0]';
     $edit = array(
       'title' => $this->randomName(),

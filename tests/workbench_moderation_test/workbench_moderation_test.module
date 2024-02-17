@@ -49,10 +49,10 @@ function workbench_moderation_test_menu_node_callback($ignored_parameter, $page_
  */
 function workbench_moderation_test_update_node($node, $action = NULL) {
   if (!empty($action)) {
-    $node->status = $action == 'publish'?NODE_PUBLISHED : NODE_NOT_PUBLISHED;
+    $node->status = $action == 'publish' ? NODE_PUBLISHED : NODE_NOT_PUBLISHED;
   }
   node_save($node);
-  return array('#markup' => t('Node status: @status', array('@status' => $node->status?t('published') : t('unpublished'))));
+  return array('#markup' => t('Node status: @status', array('@status' => $node->status ? t('published') : t('unpublished'))));
 }
 
 /**

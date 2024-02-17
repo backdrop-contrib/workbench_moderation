@@ -75,7 +75,6 @@ class WorkbenchModerationModerateTabTestCase extends WorkbenchModerationTestCase
     $this->assertTrue($is_moderated, t('The content type is moderated.'));
 
     // Create a new node and make sure it is unpublished.
-
     $body_name = 'body[' . LANGUAGE_NONE . '][0]';
     $edit = array(
       'title' => $this->randomName(),
@@ -151,7 +150,6 @@ class WorkbenchModerationDraftTabTestCase extends WorkbenchModerationTestCase {
 
   function testDraftTab() {
     // Create a new node and make sure it is unpublished.
-
     $body_name = 'body[' . LANGUAGE_NONE . '][0]';
     $edit = array(
       'title' => $this->randomName(),

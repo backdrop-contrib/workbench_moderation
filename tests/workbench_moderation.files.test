@@ -56,7 +56,6 @@ class WorkbenchModerationFilesTestCase extends FileFieldTestCase {
 
   function testModeratedFileField() {
     // Create a new node with an uploaded file.
-
     $file = $this->getTestFile('text');
     $edit = array(
       'title' => $this->randomName(),
@@ -65,17 +64,14 @@ class WorkbenchModerationFilesTestCase extends FileFieldTestCase {
     $this->backdropPost("node/add/{$this->content_type}", $edit, t('Save'));
 
     // Get the new node.
-
     $node = $this->backdropGetNodeByTitle($edit['title']);
     $nid = $node->nid;
 
     // Publish the node via the moderation form.
-
     $moderate = array('state' => workbench_moderation_state_published());
     $this->backdropPost("node/{$nid}/moderation", $moderate, t('Apply'));
 
     // Update the node; remove the first file and add a second file.
-
     $file = $this->getTestFile('text');
     $edit = array(
       'title' => $this->randomName(10) . '_second',

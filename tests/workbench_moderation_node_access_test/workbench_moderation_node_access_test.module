@@ -10,7 +10,6 @@
  */
 function workbench_moderation_node_access_test_node_grants($account, $op) {
   // Give everyone full grants so we don't break other node tests.
-
   return array(
     'test_wm_realm' => array(1),
   );
@@ -21,7 +20,6 @@ function workbench_moderation_node_access_test_node_grants($account, $op) {
  */
 function workbench_moderation_node_access_test_node_access_records($node) {
   // Return nothing for unpublished nodes.
-
   if (!$node->status) {
     return array();
   }

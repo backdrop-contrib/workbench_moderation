@@ -123,7 +123,7 @@ function workbench_moderation_rules_event_info() {
 }
 
 /**
- * Implements hook_rules_action_info() on behalf of the workbench_moderation module().
+ * Implements hook_rules_action_info() on behalf of the workbench_moderation module.
  */
 function workbench_moderation_rules_action_info() {
   $items = array();

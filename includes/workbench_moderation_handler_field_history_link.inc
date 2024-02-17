@@ -9,7 +9,6 @@ class workbench_moderation_handler_field_history_link extends views_handler_fiel
 
   function render_link($data, $values) {
     // ensure user has access to view moderation history for this node.
-
     $node = node_load($this->get_value($values, 'nid'));
     if (!_workbench_moderation_access('view history', $node)) {
       return;
