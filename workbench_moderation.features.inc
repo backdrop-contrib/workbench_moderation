@@ -24,7 +24,7 @@ function workbench_moderation_states_features_export_options() {
  *
  * Process the features export array for states.
  */
-function workbench_moderation_states_features_export($data, &$export, $module_name) {
+function workbench_moderation_states_features_export($data, $export, $module_name) {
   $export['dependencies']['workbench_moderation'] = 'workbench_moderation';
 
   foreach ($data as $component) {
@@ -76,7 +76,7 @@ function workbench_moderation_states_features_rebuild($module) {
     foreach ($defaults as $state) {
       workbench_moderation_state_save((object) $state);
     }
-    drupal_static_reset('workbench_moderation_states');
+    backdrop_static_reset('workbench_moderation_states');
   }
 }
 
@@ -100,7 +100,7 @@ function workbench_moderation_transitions_features_export_options() {
  *
  * Process the features export array for transitions.
  */
-function workbench_moderation_transitions_features_export($data, &$export, $module_name) {
+function workbench_moderation_transitions_features_export($data, $export, $module_name) {
   $export['dependencies']['workbench_moderation'] = 'workbench_moderation';
 
   foreach ($data as $component) {
@@ -162,6 +162,6 @@ function workbench_moderation_transitions_features_rebuild($module) {
     foreach ($defaults as $machine_name => $transition) {
       workbench_moderation_transition_save((object) $transition);
     }
-    drupal_static_reset('workbench_moderation_transitions');
+    backdrop_static_reset('workbench_moderation_transitions');
   }
 }

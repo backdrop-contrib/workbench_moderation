@@ -1,0 +1,25 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the workbench_moderation_test module.
+ *
+ */
+
+
+/**
+ * Migrate workbench_moderation_test variables to config.
+ */
+function workbench_moderation_test_update_1000() {
+  $config = config('workbench_moderation_test.settings');
+  $config->set('workbench_moderation_test', update_variable_get('workbench_moderation_test', array()));
+  $config->save();
+
+  update_variable_del('workbench_moderation_test');
+}
+
+/**
+ * Implements hook_install().
+ */
+function workbench_moderation_test_install() {
+  // Dynamically generated variable data was detected.
+}

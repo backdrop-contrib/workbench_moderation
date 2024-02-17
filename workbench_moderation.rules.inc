@@ -21,7 +21,10 @@ function workbench_moderation_rules_condition_info() {
     'label' => t("Content is using workbench moderation"),
     'base' => 'workbench_access_rules_condition_content_is_using_workbench_moderation',
     'parameter' => array(
-      'node' => array('type' => 'node', 'label' => t("Content")),
+      'node' => array(
+        'type' => 'node',
+        'label' => t("Content"),
+      ),
     ),
     'access callback' => 'rules_node_integration_access',
   );
@@ -31,7 +34,10 @@ function workbench_moderation_rules_condition_info() {
     'label' => t("Content is live revision"),
     'base' => 'workbench_moderation_rules_condition_content_is_live_revision',
     'parameter' => array(
-      'node' => array('type' => 'node', 'label' => t("Content")),
+      'node' => array(
+        'type' => 'node',
+        'label' => t("Content"),
+      ),
     ),
     'access callback' => 'rules_node_integration_access',
   );
@@ -41,7 +47,10 @@ function workbench_moderation_rules_condition_info() {
     'label' => t("Content's current moderation state"),
     'base' => 'workbench_moderation_rules_condition_contents_current_state',
     'parameter' => array(
-      'node' => array('type' => 'node', 'label' => t("Content")),
+      'node' => array(
+        'type' => 'node',
+        'label' => t("Content"),
+      ),
       'moderation_state' => array(
         'type' => 'text',
         'label' => t("Workbench moderation state"),
@@ -58,7 +67,10 @@ function workbench_moderation_rules_condition_info() {
     'label' => t("Content's previous moderation state"),
     'base' => 'workbench_moderation_rules_condition_contents_previous_state',
     'parameter' => array(
-      'node' => array('type' => 'node', 'label' => t("Content")),
+      'node' => array(
+        'type' => 'node',
+        'label' => t("Content"),
+      ),
       'moderation_state' => array(
         'type' => 'text',
         'label' => t("Workbench moderation state"),
@@ -111,7 +123,7 @@ function workbench_moderation_rules_event_info() {
 }
 
 /**
- * Implements hook_rules_action_info() on behalf of the workbench_moderation module.
+ * Implements hook_rules_action_info() on behalf of the workbench_moderation module().
  */
 function workbench_moderation_rules_action_info() {
   $items = array();
@@ -120,7 +132,6 @@ function workbench_moderation_rules_action_info() {
     'label' => t("Set moderation state during save"),
     'group' => t("Node"),
     'base' => 'workbench_moderation_set_state_during_save_rules_action',
-
     'parameter' => array(
       'node' => array(
         'type' => 'node',
@@ -139,7 +150,6 @@ function workbench_moderation_rules_action_info() {
     'label' => t("Set moderation state"),
     'group' => t("Node"),
     'base' => 'workbench_moderation_set_state_rules_action',
-
     'parameter' => array(
       'node' => array(
         'type' => 'node',
@@ -163,7 +173,6 @@ function workbench_moderation_rules_action_info() {
     'label' => t("Load current moderation state"),
     'group' => t("Node"),
     'base' => 'workbench_moderation_load_current_state_rules_action',
-
     'parameter' => array(
       'node' => array(
         'type' => 'node',
@@ -182,7 +191,6 @@ function workbench_moderation_rules_action_info() {
     'label' => t("Load current node revision"),
     'group' => t("Node"),
     'base' => 'workbench_moderation_load_current_revision_rules_action',
-
     'parameter' => array(
       'node' => array(
         'type' => 'node',
@@ -301,7 +309,7 @@ function workbench_moderation_rules_condition_contents_previous_state($node, $mo
  *   An array containing the node object stored in the key called 'node'.
  */
 function workbench_moderation_set_state_rules_action($node, $moderation_state, $force_transition) {
-  if (is_object($node) && !empty($moderation_state)){
+  if (is_object($node) && !empty($moderation_state)) {
     actions_do('workbench_moderation_set_state_action', $node, array('state' => $moderation_state, 'force_transition' => $force_transition));
   }
 
@@ -341,7 +349,7 @@ function workbench_moderation_set_state_during_save_rules_action($node, $moderat
 function workbench_moderation_load_current_state_rules_action($node) {
   $state = '';
 
-  if (is_object($node) && property_exists($node, 'workbench_moderation') && isset($node->workbench_moderation['current'])){
+  if (is_object($node) && property_exists($node, 'workbench_moderation') && isset($node->workbench_moderation['current'])) {
     $state = $node->workbench_moderation['current'];
   }
 

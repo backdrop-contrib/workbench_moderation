@@ -25,7 +25,7 @@ function workbench_moderation_noderevision_page_manager_tasks() {
     'get context placeholders' => 'workbench_moderation_noderevisoin_get_contexts',
 
     // Allow this to be enabled or disabled:
-    'disabled' => variable_get('workbench_moderation_noderevision_disabled', TRUE),
+    'disabled' => config_get('workbench_moderation.settings', 'workbench_moderation_noderevision_disabled'),
     'enable callback' => 'workbench_moderation_noderevision_enable',
   );
 }
@@ -35,14 +35,16 @@ function workbench_moderation_noderevision_page_manager_tasks() {
  *
  * Alter menu item so that admin/workbench comes here.
  */
-function workbench_moderation_noderevision_menu_alter(&$items, $task) {
+function workbench_moderation_noderevision_menu_alter($items, $task) {
 
-  if (variable_get('workbench_moderation_noderevision_disabled', TRUE)) {
+  if (config_get('workbench_moderation.settings', 'workbench_moderation_noderevision_disabled')) {
     return;
   }
 
   $callback = $items['node/%node/revisions/%/view']['page callback'];
   // Override the node edit handler for our purpose.
+
+  // TODO This variable was probably removed in Backdrop without replacement.
   if ($callback == 'workbench_moderation_node_view_revision' || variable_get('page_manager_override_anyway', FALSE)) {
     $items['node/%node/revisions/%/view']['page callback'] = 'workbench_moderation_noderevision';
     $items['node/%node/revisions/%/view']['file path'] = $task['path'];
@@ -50,9 +52,9 @@ function workbench_moderation_noderevision_menu_alter(&$items, $task) {
   }
 
   else {
-    variable_set('workbench_moderation_noderevision_disabled', TRUE);
+    config_set('workbench_moderation.settings', 'workbench_moderation_noderevision_disabled', TRUE);
     if (!empty($GLOBALS['page_manager_enabling_workbench_noderevision'])) {
-      drupal_set_message(t('Page manager module is unable to enable Workbench Moderation Revision Node because some other module already has overridden with %callback.', array('%callback' => $callback)), 'warning');
+      backdrop_set_message(t('Page manager module is unable to enable Workbench Moderation Revision Node because some other module already has overridden with %callback.', array('%callback' => $callback)), 'warning');
     }
     return;
   }
@@ -96,7 +98,7 @@ function workbench_moderation_noderevision($node) {
  * Callback to enable/disable the page from the UI.
  */
 function workbench_moderation_noderevision_enable($cache, $status) {
-  variable_set('workbench_moderation_noderevision_disabled', $status);
+  config_set('workbench_moderation.settings', 'workbench_moderation_noderevision_disabled', $status);
   // Set a global flag so that the menu routine knows it needs
   // to set a message if enabling cannot be done.
   if (!$status) {

@@ -47,10 +47,10 @@ function workbench_moderation_views_data() {
     'title' => t('Node'),
     'help' => t('The node according to the Workbench Moderation.'),
     'relationship' => array(
-        'base' => 'node',
-        'field' => 'nid',
-        'handler' => 'views_handler_relationship',
-        'label' => t('Node'),
+      'base' => 'node',
+      'field' => 'nid',
+      'handler' => 'views_handler_relationship',
+      'label' => t('Node'),
     ),
   );
 
@@ -198,6 +198,7 @@ function workbench_moderation_views_data() {
   );
 
   // Declare virtual fields on the {node} table.
+
   $data['node']['workbench_moderation_moderated_type'] = array(
     'group' => t('Workbench Moderation'),
     'title' => t('Type is moderated'),

@@ -26,8 +26,8 @@ class workbench_moderation_handler_field_state extends views_handler_field_node 
   }
 
   /**
-    * Render node type as human readable name, unless using machine_name option.
-    */
+   * Render node type as human readable name, unless using machine_name option.
+   */
   function render_name($data, $values) {
     if ($this->options['machine_name'] != 1 && $data !== NULL && $data !== '') {
       return t($this->sanitize_value(workbench_moderation_state_label($data)));
