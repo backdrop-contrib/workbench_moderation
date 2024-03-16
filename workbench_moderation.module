@@ -605,25 +605,6 @@ function _workbench_moderation_access_current_draft($node) {
 }
 
 /**
- * Implements hook_help().
- */
-function workbench_moderation_help($path, $arg) {
-  switch ($path) {
-    case 'admin/help#workbench_moderation':
-      return '<p>' . t("Enables you to control node display with a moderation workflow. You can have a 'Live revision' for all visitors and pending revisions which need to be approved to become the new 'Live revision.'") . '</p>';
-
-    case 'admin/config/workbench/moderation':
-      return '<p>' . t("These are the states through which a node passes in order to become published. By default, the Workbench Moderation module provides the states 'Draft,' 'Needs review,' and 'Published'. On this screen you may create, delete and re-order states. Additional states might include 'Legal review,' 'PR review', or any or state your site may need.") . '</p>';
-
-    case 'admin/config/workbench/moderation/transitions':
-      return '<p>' . t('The Workbench Moderation module keeps track of when a node moves from one state to another. By default, nodes begin in the %draft state and end in the %published state. The transitions on this page control how nodes move from state to state. <a href="@permissions">Permission to perform these transitions is controlled on a role-by-role basis</a>.', array('%draft' => workbench_moderation_state_label(workbench_moderation_state_none()), '%published' => workbench_moderation_state_label(workbench_moderation_state_published()), '@permissions' => url('admin/people/permissions', array('fragment' => 'module-workbench_moderation')))) . '</p>';
-
-    case 'admin/config/workbench/moderation/check-permissions':
-      return '<p>' . t("In order to participate in the moderation process, Backdrop users must be granted several node- and moderation- related permissions. This page can help check whether roles have the correct permissions to author, edit, moderate, and publish moderated content.") . '</p>';
-  }
-}
-
-/**
  * Implements hook_views_api().
  */
 function workbench_moderation_views_api() {
