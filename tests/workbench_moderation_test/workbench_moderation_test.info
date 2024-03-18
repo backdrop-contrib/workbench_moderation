@@ -1,6 +1,0 @@
-name = Workbench Moderation Test
-description = Test module for Workbench Moderation.
-package = Workbench
-backdrop = 1.x
-type = module
-hidden = TRUE
